@@ -27,11 +27,21 @@ async function fetchSingleDoubanTopic(url) {
     let htmlContent = response.data;
 
     const $ = cheerio.load(htmlContent);
-    const contentText = $('.topic-content > p');
+    const contentText = $('.topic-content > p:first-child');
+    const contentImg = $('.topic-figure > img');
+    let details = [];
+    let imgs = [];
     for (let i = 0; i < contentText.length; i++) {
-        console.log(contentText.eq(i).text());
+        details.push(contentText.eq(i).text());
     }
-
+    for (let j = 0; j < contentImg.length; j++) {
+        imgs.push(contentImg.eq(j).attr('src'));
+    }
+    return {
+        url,
+        details,
+        imgs
+    }
 }
 
 module.exports = {

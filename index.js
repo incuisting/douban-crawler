@@ -1,21 +1,20 @@
 const crawler = require('./services/crawler');
 
 (async() => {
-
-    for (let i = 0; i < 100; i += 25) {
+    let tenPagesData = [];
+    for (let i = 0; i < 250; i += 25) {
         let results = await crawler.fetchSingleDoubanList(i);
 
         for (let j = 0; j < results.length; j++) {
             let item = results[j];
             if (isNear(item.title)) {
-                await crawler.fetchSingleDoubanTopic(item.url)
+                let results = await crawler.fetchSingleDoubanTopic(item.url);
+                fontTenPagesData.push(results);
             }
         }
         // await crawler.fetchSingleDoubanTopic(results[0].url);
     }
-
-
-
+    console.log('10pages', tenPagesData);
 })()
 .then(result => {
         console.log('done');
