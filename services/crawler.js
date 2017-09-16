@@ -9,6 +9,8 @@ async function fetchSingleDoubanList(start) {
     const $ = cheerio.load(htmlContent);
     const result = $('a[title]');
 
+    console.log('length',result.length)
+
     const resultList = [];
 
     for (let i = 0; i < result.length; i++) {
@@ -22,7 +24,7 @@ async function fetchSingleDoubanList(start) {
 
 }
 
-async function fetchSingleDoubanTopic(url) {
+async function fetchSingleDoubanTopic(url,title) {
     let response = await axios.get(url);
     let htmlContent = response.data;
 
@@ -38,6 +40,7 @@ async function fetchSingleDoubanTopic(url) {
         imgs.push(contentImg.eq(j).attr('src'));
     }
     return {
+        title,
         url,
         details,
         imgs
