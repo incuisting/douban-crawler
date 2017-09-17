@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+.search {
+    position: absolute;
+    top: 18%;
+    /*defult 50% when have data come animated to 18%*/
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.haveSearchData {
+    top: 18%;
+}
+
+.search-input{
+    border:none;
+    background: transparent;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 2px 4px 1px rgba(0, 0, 0, .18);
+    min-height: 50px;
+    min-width: 400px;
+    border-radius: 5px;
+    padding: 10px;
+    outline: none;
+}
+.search-input::placeholder{
+    font-size: 18px;
+}
+
+.search-submit{
+    min-height: 50px;
+    min-width: 80px;
+    margin-left: 10px;
+    font-size: 18px;
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+.search-submit:active {
+    background: #abd3b4;
+}
+
+.main {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.items {
+    padding-top: 25%;
+}
+
+.items li {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 2px 4px 1px rgba(0, 0, 0, .18);
+    border-radius: 5px;
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.item-header {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.item-content > p{
+    font-size: 18px;
+    font-weight: 100;
+}
+
+p.item-have-img{
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 20px;
+    border-bottom: 1px solid;
+    font-weight: normal;
+}
+.item-have-img > span {
+   font-weight: 700;
+}
+
+.item-footer {
+    min-height: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+}
+
+.item-footer > a {
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    min-width: 50px;
+    min-height: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 2px 4px 1px rgba(0, 0, 0, .18);
+}
+
+.item-footer > a:hover {
+    background: rgba(0, 0, 0, 0.07);
+}
+
+.load-more{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.load-more > button{
+    display: none;
+    padding: 10px 40px;
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.load-more > button:active{
+    background: #abd3b4;
+}
+#more.active{
+    display: inherit;
+}
