@@ -5,9 +5,10 @@ $(function () {
     let $itemsContainer = $('.items');
     let $search = $('.search');
     let $loadingImg = $('.loading');
-    let $loadMoreText = $('#more > span');
-    let $laodMoreImg = $('#more > img');
+    let $loadMoreText = $loadMore.children('span');
+    let $loadMoreImg = $loadMore.children('img');
 
+    console.log($loadMore);
     //监听submit的click
     $('.search-submit').on('click', () => {
         queryString = $('.search-input').val();
@@ -31,11 +32,11 @@ $(function () {
     $loadMore.on('click',()=>{
         pageIndex += 1;
         $loadMoreText.removeClass('active');
-        $laodMoreImg.addClass('active');
+        $loadMoreImg.addClass('active');
         getData(pageIndex,queryString)
             .done((res)=>{
                 $loadMoreText.addClass('active');
-                $laodMoreImg.removeClass('active');
+                $loadMoreImg.removeClass('active');
                 render(res);
                 $loadMore.addClass('active');
             })
