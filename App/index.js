@@ -1,27 +1,69 @@
 $(function () {
-    let pageIndex = 0;
+    let pageIndex = 1;
     let queryString = '';
+    let $loadMore = $('#more');
+    let $itemsContainer = $('.items');
+    let $search = $('.search');
 
     $('.search-submit').on('click', () => {
         queryString = $('.search-input').val();
-        console.log(queryString);
+        pageIndex = 1;
+        $search.addClass('haveSearchData');
+        getData(pageIndex, queryString)
+            .done((res) => {
+                console.log('res',res);
+                beforeRender();
+                render(res);
+                $loadMore.addClass('active');
+            })
+            .fail((e) => {
+                console.log('err', e);
+                beforeRender();
+                $itemsContainer.append("<li><h1>ops出错了</h1></li>");
+            })
     });
 
+    $loadMore.on('click',()=>{
+        pageIndex += 1;
+        getData(pageIndex,queryString)
+            .done((res)=>{
+                render(res);
+                $loadMore.addClass('active');
+            })
+            .fail((e)=>{
+                console.log('err', e);
+                $itemsContainer.append("<li><h1>ops出错了</h1></li>");
+            })
+    });
 
-    $.ajax({
-        url: 'getPage',
-        type: 'get',
-        data: {
-            start: pageIndex,
-            length: queryString
-        },
-        success: (e) => {
-            console.log('success', e)
-        },
-        error: (e) => {
-            console.log('err', e)
+    function beforeRender() {
+        $itemsContainer.empty();
+        $loadMore.removeClass('active');
+    }
+
+    function render(data) {
+        if(data.length > 0){
+            data.forEach((item)=>{
+                let html = htmlTpl(item);
+                $itemsContainer.append(html);
+            })
+        }else{
+            $itemsContainer.append(`<li><h1>第${pageIndex}页没有匹配的房源</h1></li>`);
         }
-    })
+    }
+
+    function getData(index, query) {
+        return (
+            $.ajax({
+                url: 'getPage',
+                type: 'get',
+                data: {
+                    index: index,
+                    filter: query
+                }
+            })
+        )
+    }
 
 
     function htmlTpl(data) {
@@ -41,7 +83,6 @@ $(function () {
             </div>
         </li>
         `;
-        return html;
+        return $(html);
     }
-
 })

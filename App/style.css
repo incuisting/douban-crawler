@@ -10,13 +10,14 @@ ul {
 
 .search {
     position: absolute;
-    top: 18%;
+    top: 50%;
     /*defult 50% when have data come animated to 18%*/
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all .5s;
 }
 
 .haveSearchData {
@@ -77,7 +78,9 @@ ul {
     font-size: 18px;
     font-weight: 100;
 }
-
+.items  h1 {
+    text-align: center;
+}
 p.item-have-img{
     display: inline-block;
     font-size: 20px;
@@ -115,7 +118,7 @@ p.item-have-img{
 .load-more{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin: 50px 0;
 }
 .load-more > button{
     display: none;
