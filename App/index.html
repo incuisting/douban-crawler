@@ -14,11 +14,16 @@
         <input class="search-input" type="text" placeholder="请输入要筛选的地点">
         <button class="search-submit">Go</button>
     </div>
-
+    <div class="loading">
+        <img src="./img/loading.png">
+    </div>
     <ul class="items">
     </ul>
     <div class="load-more">
-        <button id="more">加载更多</button>
+        <button id="more">
+            <span class="active">加载更多</span>
+            <img  src="./img/loading.png">
+        </button>
     </div>
 </section>
 <script src="jquery-3.2.1.js"></script>

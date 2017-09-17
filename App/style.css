@@ -24,8 +24,8 @@ ul {
     top: 18%;
 }
 
-.search-input{
-    border:none;
+.search-input {
+    border: none;
     background: transparent;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 2px 4px 1px rgba(0, 0, 0, .18);
     min-height: 50px;
@@ -34,11 +34,12 @@ ul {
     padding: 10px;
     outline: none;
 }
-.search-input::placeholder{
+
+.search-input::placeholder {
     font-size: 18px;
 }
 
-.search-submit{
+.search-submit {
     min-height: 50px;
     min-width: 80px;
     margin-left: 10px;
@@ -50,8 +51,24 @@ ul {
     cursor: pointer;
     outline: none;
 }
+
 .search-submit:active {
     background: #abd3b4;
+}
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.loading.active{
+    display: block;
+}
+.loading > img {
+    max-width: 100px;
+    animation: 1.5s linear infinite loading;
 }
 
 .main {
@@ -74,22 +91,26 @@ ul {
     margin-top: 0px;
     margin-bottom: 10px;
 }
-.item-content > p{
+
+.item-content > p {
     font-size: 18px;
     font-weight: 100;
 }
-.items  h1 {
+
+.items h1 {
     text-align: center;
 }
-p.item-have-img{
+
+p.item-have-img {
     display: inline-block;
     font-size: 20px;
     margin-top: 20px;
     border-bottom: 1px solid;
     font-weight: normal;
 }
+
 .item-have-img > span {
-   font-weight: 700;
+    font-weight: 700;
 }
 
 .item-footer {
@@ -115,12 +136,13 @@ p.item-have-img{
     background: rgba(0, 0, 0, 0.07);
 }
 
-.load-more{
+.load-more {
     display: flex;
     justify-content: center;
     margin: 50px 0;
 }
-.load-more > button{
+
+.load-more > button {
     display: none;
     padding: 10px 40px;
     color: #155724;
@@ -131,9 +153,31 @@ p.item-have-img{
     outline: none;
 }
 
-.load-more > button:active{
+.load-more > button:active {
     background: #abd3b4;
 }
-#more.active{
+#more > *{
+    display: none;
+}
+#more > img{
+    max-width: 17px;
+    animation: loading 1.5s infinite linear;
+}
+#more .active{
     display: inherit;
+}
+
+#more.active {
+    display: inherit;
+}
+
+
+
+@keyframes loading {
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }

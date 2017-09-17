@@ -4,10 +4,15 @@ $(function () {
     let $loadMore = $('#more');
     let $itemsContainer = $('.items');
     let $search = $('.search');
+    let $loadingImg = $('.loading');
+    let $loadMoreText = $('#more > span');
+    let $laodMoreImg = $('#more > img');
 
+    //监听submit的click
     $('.search-submit').on('click', () => {
         queryString = $('.search-input').val();
         pageIndex = 1;
+        $loadingImg.addClass('active');
         $search.addClass('haveSearchData');
         getData(pageIndex, queryString)
             .done((res) => {
@@ -22,11 +27,15 @@ $(function () {
                 $itemsContainer.append("<li><h1>ops出错了</h1></li>");
             })
     });
-
+    //监听loadmore的click
     $loadMore.on('click',()=>{
         pageIndex += 1;
+        $loadMoreText.removeClass('active');
+        $laodMoreImg.addClass('active');
         getData(pageIndex,queryString)
             .done((res)=>{
+                $loadMoreText.addClass('active');
+                $laodMoreImg.removeClass('active');
                 render(res);
                 $loadMore.addClass('active');
             })
@@ -39,6 +48,7 @@ $(function () {
     function beforeRender() {
         $itemsContainer.empty();
         $loadMore.removeClass('active');
+        $loadingImg.removeClass('active');
     }
 
     function render(data) {
